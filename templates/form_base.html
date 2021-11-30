@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css %}
+    {{ form.media.css }}
+    <link href="{% static 'libs/select2/select2.min.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="page-title">{{title}}</h4>
+                
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4>{{title}}</h4>
+                </div>
+
+                <div class="card-body">
+                    {% if form.non_field_errors  %}
+                        <div class="alert alert-danger">
+                            Por favor, corrija o(s) erro(s) à seguir: <br/><br/>
+                            <strong>{{ form.non_field_errors }}</strong>
+                        </div>
+                    {% endif %}
+                    <form action="." method="post" id="login-form" class="parsley-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                {% for field in form %}
+                                    <div class="form-group row mb-3">
+                                        <label class="col-md-3 col-form-label" for="cns"> {{ field.label }}</label>
+                                        <div class="col-md-9">
+                                            {{ field }}
+                                            <small>{{ field.help_text }}</small>
+                                            <small><font color="red"><b>{{ field.errors }}</b></font></small>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                        <ul class="list-inline wizard mb-0">
+                            <div class="list-inline-item float-right">
+                                <button class="btn btn-success btn-block width-lg" id="btn-login" type="submit"> Salvar </button>
+                            </div>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Datatables -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'libs/select2/select2.min.js' %}" defer></script>
+    <script src="{% static 'libs/jquery-mask-plugin/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'libs/mask-money/jquery.maskMoney.min.js' %}"></script>
+
+    {{ form.media.js }}
+{% endblock %}
