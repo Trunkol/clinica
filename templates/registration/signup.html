@@ -34,6 +34,8 @@
                                 {% endif %}
 
                                 <form method="post" id="login-form">
+                                    <h4 class="text-center">Faça o seu cadastro</h4>
+                                    <br>
                                     {% csrf_token %}
                                     <div class="form-group mb-3">
                                         <label for="emailaddress">Informe o email</label>
@@ -46,11 +48,11 @@
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-primary btn-block" id="btn-login" type="submit"> Acessar </button>
+                                        <button class="btn btn-primary btn-block" id="btn-login" type="submit"> Concluir </button>
                                     </div>
                                 </form>
                                 <br>
-                                <a class="btn btn-block btn-outline-success" href="/register"> Criar nova conta </a>
+                                <a class="btn btn-block btn-outline-success" href="/accounts/login/"> Já tenho uma conta </a>
                             </div>
                         </div>  
                     </div>
