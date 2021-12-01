@@ -70,6 +70,27 @@
     <script src="{% static 'libs/select2/select2.min.js' %}" defer></script>
     <script src="{% static 'libs/jquery-mask-plugin/jquery.mask.min.js' %}"></script>
     <script src="{% static 'libs/mask-money/jquery.maskMoney.min.js' %}"></script>
+    <!-- Plugins js-->
+    <script src="{% static 'assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js' %}"></script>
+    <script src="{% static 'assets/libs/multiselect/jquery.multi-select.js' %}"></script>
+    <script src="{% static 'assets/libs/jquery-mask-plugin/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'assets/libs/parsleyjs/parsley.min.js' %}"></script>
+    <script src="{% static 'assets/libs/parsleyjs/pt-br.js' %}"></script>
+    {{ form.media.js }}
+    <script>
+        // Input Mask
+        $( document ).ready(function() {
+            $('[data-toggle="input-mask"]').each(function (idx, obj) {
+                var maskFormat = $(obj).data("maskFormat");
+                var reverse = $(obj).data("reverse");
+                if (reverse != null)
+                    $(obj).mask(maskFormat, {'reverse': reverse});
+                else
+                    $(obj).mask(maskFormat);
+            });
 
+            $('.parsley-form').parsley();
+        });
+    </script>
     {{ form.media.js }}
 {% endblock %}

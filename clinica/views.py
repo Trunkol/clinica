@@ -1,10 +1,18 @@
 # accounts/views.py
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views import generic
+from django.shortcuts import  render, redirect
+from .forms import CriarUsuário
+from django.contrib.auth import login
+from django.contrib import messages
 
+def register_user(request):
+    if request.method == "POST":
+        form = CriarUsuário(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful." )
+            return redirect("/inicio/")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = CriarUsuário()
+    return render(request, "registration/signup.html", context={"form":form})
 
-class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'

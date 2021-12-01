@@ -13,6 +13,7 @@ class Profile(models.Model):
 
     usuario = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
     tipo = models.CharField('tipo', choices=TIPOS_DISPONIVEIS, max_length=255, default=PACIENTE)
+    telefone = models.CharField('Telefone', max_length=255, null=True, blank=True)
 
 class Clinica(models.Model):
     endereco = models.CharField('Endereço', max_length=255)

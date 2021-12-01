@@ -20,12 +20,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url
 
-from .views import SignUpView
+from .views import register_user
 
 urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view()),
     path('logout', auth_views.logout_then_login, name="logout"),
-    path('register/', SignUpView.as_view(), name='signup'),
+    path('register/', register_user, name='signup'),
     path('', include('core.urls')),
     path("select2/", include("django_select2.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
