@@ -43,25 +43,22 @@
 
 {% block scripts %}
     <script>
-        var dias_selecionados = [];
-
+        array_consultas = [
+            {% for consulta in consultas %}
+                {
+                    id: '{{ consulta.id }}',
+                    title: 'Consulta - {{ consulta.paciente.nome }}',
+                    start: new Date('{{ consulta.horario_inicio|date:"c" }}'),
+                    end: new Date('{{ consulta.horario_fim|date:"c" }}')
+                },
+            {% endfor %}
+        ];            
         
         document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridWeek',
-          events: [
-            {
-              id: 'a',
-              title: 'consulta 2',
-              start: '2021-12-02'
-            },
-            {
-              id: 'a',
-              title: 'consulta 1',
-              start: '2021-12-02'
-            }
-          ]
+          events: array_consultas
         });
         calendar.render();
       });

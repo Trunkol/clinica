@@ -37,23 +37,6 @@
                                     {% endfor %}
                                 {% endif %}
 
-                                <form method="post" id="login-form">
-                                    <h4 class="text-center">Faça o seu cadastro</h4>
-                                    <br>
-                                    {% csrf_token %}
-                                    <div class="form-group mb-3">
-                                        <label for="emailaddress">Informe o email</label>
-                                        <input class="form-control" type="text" name="username" autofocus autocapitalize="none" placeholder="sem pontos e sem traço" autocomplete="username" maxlength="150" required id="id_username">
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="password">Senha</label>
-                                        <input class="form-control" type="password" name="password" autocomplete="current-password" placeholder="*****" required id="id_password">
-                                    </div>
-
-                                    <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-primary btn-block" id="btn-login" type="submit"> Concluir </button>
-                                    </div>
                                 <form action="." method="POST" class="parsley-form">
                                     {% csrf_token %}
                                     <div class="row">
@@ -76,8 +59,6 @@
                                         </div>
                                     </ul>
                                 </form>
-                                <br>
-                                <a class="btn btn-block btn-outline-success" href="/accounts/login/"> Já tenho uma conta </a>
                             </div>
                         </div>  
                     </div>

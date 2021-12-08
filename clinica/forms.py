@@ -1,5 +1,5 @@
 from django import forms
-from django_select2.forms import ModelSelect2Widget, ModelSelect2MultipleWidget, Select2Widget
+from django_select2.forms import Select2Widget
 from django.contrib.auth.models import User
 from core.models import Profile, Medico
 
@@ -35,11 +35,14 @@ class CriarUsuário(forms.ModelForm):
         user = User.objects.create_user(username=email,
                                  email=email,
                                  password=password)
-
+        
         profile = Profile.objects.create(
-            usuario=user, telefone=self.cleaned_data.get('telefone')
+            nome=self.cleaned_data.get('nome'), usuario=user, 
+            telefone=self.cleaned_data.get('telefone')
         )
+        
         if self.cleaned_data.get('tipo_perfil') == Profile.MEDICO:
-            profile.tipo_perfil = Profile.MEDICO,
+            profile.tipo = Profile.MEDICO
             profile.save()
+
         return user

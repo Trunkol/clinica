@@ -80,9 +80,13 @@ WSGI_APPLICATION = 'clinica.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'clinica',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5431',
+    },
 }
 
 CACHES = {
@@ -125,6 +129,8 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Recife'
 LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/inicio'
+LOGOUT_REDIRECT_URL = '/'
 
 USE_I18N = True
 

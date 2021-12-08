@@ -77,7 +77,9 @@
                 </ul>
                 <ul class="navigation-menu">
                     <li class="has-submenu">
-                        <a href="/"><i class="mdi mdi-view-dashboard"></i>Cadastrar Nova Consulta</a>
+                        {% if profile.is_paciente %}
+                            <a href="{% url 'core:cadastrar_consulta' %}"><i class="mdi mdi-view-dashboard"></i>Cadastrar Nova Consulta</a>
+                        {% endif %}
                     </li>
                 </ul>
                 <!-- End navigation menu -->
